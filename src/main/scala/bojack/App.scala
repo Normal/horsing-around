@@ -3,7 +3,9 @@ package bojack
 import java.util.Scanner
 
 import com.typesafe.scalalogging.StrictLogging
+
 import scala.collection.JavaConverters._
+
 
 object App extends StrictLogging {
 
@@ -11,7 +13,12 @@ object App extends StrictLogging {
     logger.info("It is alive")
 
     val input = new Scanner(System.in).asScala.mkString
-    logger.info(input)
+
+    val (agents, jobs, requests) = JsonParser.read(input)
+
+    logger.info(agents.mkString)
+    logger.info(jobs.mkString)
+    logger.info(requests.mkString)
   }
 
 }
