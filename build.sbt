@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",
   
   // json
-  "org.json4s" %% "json4s-native" % "3.6.7"
+  "org.json4s" %% "json4s-native" % "3.6.7",
+  "org.json4s" %% "json4s-jackson" % "3.6.7"
 )
 
 test in assembly := {}
