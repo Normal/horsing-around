@@ -1,5 +1,6 @@
 package bojack
 
+import bojack.handling.JsonParser
 import bojack.model.{Agent, Job, Request, Response}
 import org.scalatest.{FunSpec, Matchers}
 

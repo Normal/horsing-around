@@ -1,8 +1,8 @@
-package bojack
+package bojack.handling
 
 import bojack.model.{Agent, Job, Request, Response}
 
-object Processor {
+object RequestHandler {
 
   def process(agents: Seq[Agent], jobs: Seq[Job], requests: Seq[Request]): Seq[Response] = {
 

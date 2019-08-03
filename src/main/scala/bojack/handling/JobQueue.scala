@@ -1,4 +1,4 @@
-package bojack
+package bojack.handling
 
 import bojack.model.{Agent, Job}
 
@@ -56,5 +56,21 @@ class JobQueue(jobs: Seq[Job]) {
       .orElse(findJob(agent.primarySkills, normalPriority))
       .orElse(findJob(agent.secondarySkills, highPriority))
       .orElse(findJob(agent.secondarySkills, normalPriority))
+
+  /**
+    * Additional util method.
+    * Returns Seq.empty if there is no suitable jobs.
+    */
+  def dequeueAll(agent: Agent): Seq[Job] = {
+
+    def dequeueAll(a: Agent, jobs: Seq[Job]): Seq[Job] = {
+      dequeue(a) match {
+        case Some(j) => dequeueAll(a, jobs :+ j)
+        case None => jobs
+      }
+    }
+
+    dequeueAll(agent, Seq.empty)
+  }
 
 }

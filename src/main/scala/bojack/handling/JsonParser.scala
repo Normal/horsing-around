@@ -1,4 +1,4 @@
-package bojack
+package bojack.handling
 
 import bojack.model._
 import org.json4s._
