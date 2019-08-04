@@ -30,6 +30,7 @@ object JsonParser {
         case Right(entity) => entity
       }
 
+      // separated valid and invalid entities
       elements.partition(!_.isInstanceOf[ParsingError])
     })
   }

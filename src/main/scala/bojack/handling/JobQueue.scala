@@ -63,10 +63,10 @@ class JobQueue(jobs: Seq[Job]) {
     */
   def dequeueAll(agent: Agent): Seq[Job] = {
 
-    def dequeueAll(a: Agent, jobs: Seq[Job]): Seq[Job] = {
+    def dequeueAll(a: Agent, jobsAcc: Seq[Job]): Seq[Job] = {
       dequeue(a) match {
-        case Some(j) => dequeueAll(a, jobs :+ j)
-        case None => jobs
+        case Some(j) => dequeueAll(a, jobsAcc :+ j)
+        case None => jobsAcc
       }
     }
 
