@@ -24,10 +24,10 @@ class JobQueue(jobs: Seq[Job]) {
 
   private def createQueues(jobs: Seq[(Job, Int)]): Map[String, mutable.Queue[(Job, Int)]] =
     jobs
-      .groupBy { case(job, index) => job.`type` }
+      .groupBy { case(job, _) => job.`type` }
       .view
       // my apologies for not functional approach here
-      .mapValues(seq => mutable.Queue.from(seq.sortBy { case(job, index) => index}))
+      .mapValues(seq => mutable.Queue.from(seq.sortBy { case(_, index) => index}))
       .toMap
 
   /**
@@ -42,8 +42,8 @@ class JobQueue(jobs: Seq[Job]) {
       // now get head element's priority (index) from each queue
       .map(queue => queue.get -> queue.get.head._2)
       // take the one with the smallest index (the highest priority)
-      .minByOption { case (queue, priority) => priority }
-      .map { case (queue, priority) => queue}
+      .minByOption { case (_, priority) => priority }
+      .map { case (queue, _) => queue}
 
     queueWithTheMostRelevantHeadElement.map(q => q.dequeue()._1)
   }
